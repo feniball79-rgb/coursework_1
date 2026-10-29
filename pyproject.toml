@@ -1,0 +1,74 @@
+[project]
+name = "coursework_1"
+version = "0.1.0"
+description = "Курсовая"
+authors = [{name = "Dindus",email = "feniball79@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.12"
+dynamic = ["dependencies"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.34.2"
+python-dotenv = "^1.2.3"
+pandas = "^3.0.6"
+openpyxl = "^3.1.5"
+poetry-core = ">=2.0.0"
+
+[build-system]
+requires = ["poetry-core >=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false      # С этим флагом poetry install ставит только зависимости без проекта
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.3.0"
+mypy = "^2.3.0"
+black = "^26.5.1"
+isort = "^8.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^7.1.0"
+pytest = "^9.1.1"
+pytest-mock = "^3.16.0"
+
+[tool.mypy]
+python_version = "3.12"
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_return_any = true
+strict = true
+warn_unreachable = true
+show_error_codes = true
+warn_unused_ignores = true
+allow_redefinition = true
+ignore_missing_imports = true
+#explicit_package_bases = true
+exclude = "venv|tests/"
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_missing_imports = true
+follow_imports = "skip"
+
+[tool.isort]
+profile = "black"
+src_paths = ["src"]
+skip = [".idea", ".mypy_cache", ".pytest_cache", "htmlcov", "logs", "data"]
+
+[tool.black]
+line-length = 119
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.mypy_cache
+    | \.venv
+  )/
+)
+
+'''
+
+
